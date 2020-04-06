@@ -1,0 +1,76 @@
+﻿@model IEnumerable<CoreMVCProject.Product>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Maker)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Maker)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Image)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="card-columns" style="padding-top: 20px">
+
+    @foreach (var p in Model)
+    {
+        //Defines the card style
+        <div class="card" style="border: none;">
+            <h5 class="card-title">@p.Maker</h5>
+            <!--Adds a card image element to the card and sets the link-->
+            <div class="card-img" style="background-image: url('@p.Image');"></div>
+            <!--Adds the body element to the card-->
+            <div class="card-body">
+                <h5 class="card-title">@p.Title</h5>
+            </div>
+            <!--Adds a botton to the bottom of a card-->
+            <div class="card-footer">
+                <h5 class="card-text">@p.Description</h5>
+
+            </div>
+
+        </div>
+    }
+</div>
